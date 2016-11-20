@@ -1,0 +1,99 @@
+body{
+	background:#000;
+}
+.board{
+	width:480px;
+	height:800px;
+	position:absolute;
+	margin:auto;
+	left:0;
+	top:0;
+	bottom:0;
+	right:0;
+	overflow:hidden;
+	border:#fff 5px solid;
+}
+.roaded{
+  background: url(../resources/bg.png) repeat-y;
+  width:480px;
+  height:1600px;
+  position:absolute;
+  left:0;
+  top:-800px;
+  animation:roadRun 1.2s linear infinite;
+}
+@-webkit-keyframes roadRun{
+	100%{ transform:translateY(800px);}
+}
+.hero{
+  transition:transform 0.6s ease;
+  position:relative;
+  left:80px;
+  top:560px;
+  z-index:100;
+}
+.left{
+  transform:translateX(0);
+}
+.right{
+    transform:translateX(178px);
+}
+.hero .body{
+  width:142px;
+	height:162px;
+  position:absolute;
+  left:0;
+  top:0;
+  background: url(../resources/hero.png) no-repeat 50% 0;
+}
+.hero .light{
+  width:142px;
+  height:57px;
+  position:absolute;
+  bottom:-22px;
+  left:-4px;
+  animation:blink 0.6s linear infinite;
+  background: url(../resources/carlight.png) no-repeat 50% 0;
+}
+@keyframes blink{
+  0%{ opacity:1}
+  50%{ opacity:0.3}
+  100%{ opacity:1}
+}
+.enemy1{
+  left:80px;
+  width:142px;
+  position:absolute;
+  height:160px;
+  top:0px;
+  animation:speed 0.5s linear infinite;
+  background:url(../resources/car0.png) no-repeat 50% 0;
+}
+.enemy2{
+  left:80px;
+  width:142px;
+  position:absolute;
+  top:0px;
+  height:160px;
+  animation:speed 0.5s linear infinite;
+  background:url(../resources/car1.png) no-repeat 50% 0;
+}
+.enemy3{
+  left:80px;
+  width:142px;
+  top:0px;
+  position:absolute;
+  height:220px;
+  background:url(../resources/car2.png) no-repeat 50% 0;
+  animation:speed 0.5s linear infinite;
+}
+@keyframes speed {
+  100%{transform:translateY(1000px);}
+}
+.eleft{
+  left:80px;
+
+}
+.eright{
+  left:258px;
+}

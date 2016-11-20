@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="./build/react.js"></script>
+    <script src="./build/react-dom.js"></script>
+    <script src="./build/browser.min.js"></script>
+    <link rel='stylesheet' href='css/style.css'>
+</head>
+
+<body>
+  <div id='reactGame'></div>
+  <script type = 'text/babel'>
+    class GameBoard extends React.Component{
+      // getInitialState(){
+      //   return {
+      //     gameState:0
+      //   }
+      // }
+      constructor(){
+        super();
+        this.state = {
+          heroLoc:0,
+          enemy:1
+        }
+      }
+      handleKey(event){
+        console.log(event.keyCode);
+        if(event.keyCode==37){
+          this.setState({heroLoc:0});
+        }
+        else if(event.keyCode==39){
+          this.setState({heroLoc:1});
+        }
+
+      }
+      componentDidMount(){
+        window.addEventListener('keydown',this.handleKey.bind(this),false);
+        setInterval(
+          ()=>{
+            let s = Math.floor(Math.random()*3+1);
+            let q = !this.state.heroLoc;
+            this.setState({
+              enemy:s,
+              heroLoc:q
+            })
+          },
+          500);
+      }
+      render(){
+        return(
+          <div className ="board">
+            <div className = 'roaded'></div>
+            <div className = 'road'>
+                <div className = {this.state.heroLoc?'hero right':'hero left'} >
+                  <div className = 'body'>
+                  </div>
+                  <div className = 'light'></div>
+                </div>
+                <div className = {this.state.enemy==3?(!this.state.heroLoc?'eright enemy3':'eleft enemy3'):this.state.enemy==2?(!this.state.heroLoc?'eright enemy2':'eleft enemy2'):
+                (!this.state.heroLoc?'eright enemy1':'eleft enemy1')}>
+
+                </div>
+            </div>
+            <span className="start"></span>
+            <span className="kilo"></span>
+            <div className="failbub">
+                <span className="failtext"></span>
+                <span className="retry"></span>
+            </div>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(
+      <GameBoard />,
+      document.getElementById('reactGame')
+    )
+  </script>
+</body>
+
+</html>
